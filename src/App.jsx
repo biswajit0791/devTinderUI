@@ -1,7 +1,7 @@
 function App() {
   return (
     <>
-      <div>Welcome to DevTinder</div>
+      <h1>Welcome to DevTinder</h1>
     </>
   );
 }
