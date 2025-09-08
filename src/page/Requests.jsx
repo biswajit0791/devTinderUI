@@ -3,6 +3,7 @@ import { APP_BASE_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addRequests, removeRequests } from "../utils/requestSlice";
+import { removeConnections } from "../utils/connectionSlice";
 
 const Requests = () => {
   const requests = useSelector((store) => store.requests);
@@ -25,6 +26,7 @@ const Requests = () => {
         { withCredentials: true }
       );
       dispatch(removeRequests({ requestId }));
+      dispatch(removeConnections());
     } catch (err) {
       console.error(err);
     }
