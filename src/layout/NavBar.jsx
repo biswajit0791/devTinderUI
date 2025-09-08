@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { APP_BASE_URL } from "../utils/constants";
 import { removeUser } from "../utils/userSlice";
 import { Link, useNavigate } from "react-router-dom";
+import { removeConnections } from "../utils/connectionSlice";
 
 const NavBar = () => {
   const userData = useSelector((store) => store.user);
@@ -16,6 +17,7 @@ const NavBar = () => {
       });
       if (res.status === 200) {
         dispatch(removeUser());
+        dispatch(removeConnections());
         navigate("/login");
       }
     } catch (err) {
@@ -52,7 +54,10 @@ const NavBar = () => {
                 <Link to="/profile">Profile</Link>
               </li>
               <li>
-                <Link>Settings</Link>
+                <Link to="/connections">Connections</Link>
+              </li>
+              <li>
+                <Link to="/requests">Requests</Link>
               </li>
               <li>
                 <a onClick={handleLogout}>Logout</a>
