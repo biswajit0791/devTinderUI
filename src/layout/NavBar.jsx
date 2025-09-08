@@ -2,8 +2,10 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { APP_BASE_URL } from "../utils/constants";
 import { removeUser } from "../utils/userSlice";
+import { clearRequests } from "../utils/requestSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { removeConnections } from "../utils/connectionSlice";
+import { clearFeed } from "../utils/feedSlice";
 
 const NavBar = () => {
   const userData = useSelector((store) => store.user);
@@ -18,6 +20,8 @@ const NavBar = () => {
       if (res.status === 200) {
         dispatch(removeUser());
         dispatch(removeConnections());
+        dispatch(clearRequests());
+        dispatch(clearFeed());
         navigate("/login");
       }
     } catch (err) {

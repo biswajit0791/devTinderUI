@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { APP_BASE_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { addConnections } from "../utils/connectionSlice";
@@ -21,8 +21,11 @@ const Connections = () => {
   useEffect(() => {
     fetchConnection();
   }, []);
-  if (!connections) return;
-  if (connections.length === 0) return <h1> No Connection Found!!</h1>;
+
+  if (!connections || connections.length === 0)
+    return (
+      <h1 className="flex justify-center my-10"> No Connection Found!!</h1>
+    );
   return (
     <div className="text-center my-10">
       <h1 className="font-bold text-2xl">Connections</h1>
@@ -46,10 +49,6 @@ const Connections = () => {
               </h2>
               {age && gender && <p>{age + " ," + gender}</p>}
               <p>{about}</p>
-            </div>
-            <div>
-              <button className="btn btn-primary mx-2">Reject</button>
-              <button className="btn btn-secondary mx-2">Reject</button>
             </div>
           </div>
         );
