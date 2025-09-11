@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { APP_BASE_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { addConnections } from "../utils/connectionSlice";
+import { Link } from "react-router-dom";
 
 const Connections = () => {
   const connections = useSelector((store) => store.connection);
@@ -21,8 +22,8 @@ const Connections = () => {
   useEffect(() => {
     fetchConnection();
   }, []);
-
-  if (!connections || connections.length === 0)
+  if (!connections) return;
+  if (connections.length === 0)
     return <h1 className="flex justify-center my-10"> No new users found!!</h1>;
   return (
     <div className="text-center my-10">
@@ -33,7 +34,7 @@ const Connections = () => {
         return (
           <div
             key={_id}
-            className="flex m-4 p-4 rounded-lg bg-base-300 w-1/2 mx-auto">
+            className="flex justify-between m-4 p-4 rounded-lg bg-base-300 w-1/2 mx-auto">
             <div>
               <img
                 alt="photo"
@@ -47,6 +48,11 @@ const Connections = () => {
               </h2>
               {age && gender && <p>{age + " ," + gender}</p>}
               <p>{about}</p>
+            </div>
+            <div>
+              <Link to={"/chat/" + _id}>
+                <button className="btn btn-primary mx-2">Chat</button>
+              </Link>
             </div>
           </div>
         );

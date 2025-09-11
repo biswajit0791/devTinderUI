@@ -36,3 +36,8 @@
   - Save nginx file
   - Restart nginx with sudo systemctl restart nginx
   - Modify base url in frontend project to /api
+
+# Realtime chat
+
+- Build the UI for a chat window on /chat/:targetUserId
+- Setup socket.io
